@@ -33,6 +33,14 @@ public class WorldListener implements Listener {
     }
 
     /**
+     * Called when blocks are about to be sent to a player
+     * 
+     * @param event Relevant event details
+     */
+    public void onBlockSend(BlockSendEvent event) {
+    }
+
+    /**
     * Called when a world is saved
     *
     * @param event Relevant event details

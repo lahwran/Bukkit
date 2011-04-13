@@ -494,6 +494,13 @@ public abstract class Event implements Serializable {
         WORLD_LOAD (Category.WORLD),
 
         /**
+         * Called when blocks are to be sent to a client, the sent blocks can be altered by plugins
+         * 
+         * @see org.bukkit.event.world.BlockSendEvent
+         */
+        BLOCK_SEND (Category.WORLD),
+
+        /**
          * LIVING_ENTITY EVENTS
          */
 
