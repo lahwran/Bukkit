@@ -2,6 +2,7 @@
 package org.bukkit.event.world;
 
 import org.bukkit.event.Listener;
+import org.bukkit.event.player.BlockSendEvent;
 import org.bukkit.plugin.AuthorNagException;
 
 /**
@@ -30,14 +31,6 @@ public class WorldListener implements Listener {
      * @param event Relevant event details
      */
     public void onSpawnChange(SpawnChangeEvent event) {
-    }
-
-    /**
-     * Called when blocks are about to be sent to a player
-     * 
-     * @param event Relevant event details
-     */
-    public void onBlockSend(BlockSendEvent event) {
     }
 
     /**

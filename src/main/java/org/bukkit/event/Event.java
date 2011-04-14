@@ -284,6 +284,13 @@ public abstract class Event implements Serializable {
          * @see org.bukkit.event.player.PlayerBedEnterEvent
          */
         PLAYER_BED_LEAVE(Category.PLAYER),
+
+        /**
+         * Called when blocks are to be sent to a client, the sent blocks can be altered by plugins
+         * 
+         * @see org.bukkit.event.player.BlockSendEvent
+         */
+        BLOCK_SEND (Category.PLAYER),
         
         /**
          * BLOCK EVENTS
@@ -492,13 +499,6 @@ public abstract class Event implements Serializable {
          * Called when a World is loaded
          */
         WORLD_LOAD (Category.WORLD),
-
-        /**
-         * Called when blocks are to be sent to a client, the sent blocks can be altered by plugins
-         * 
-         * @see org.bukkit.event.world.BlockSendEvent
-         */
-        BLOCK_SEND (Category.WORLD),
 
         /**
          * LIVING_ENTITY EVENTS
