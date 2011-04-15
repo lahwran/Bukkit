@@ -2,7 +2,6 @@
 package org.bukkit.event.world;
 
 import org.bukkit.event.Listener;
-import org.bukkit.event.player.BlockSendEvent;
 import org.bukkit.plugin.AuthorNagException;
 
 /**
