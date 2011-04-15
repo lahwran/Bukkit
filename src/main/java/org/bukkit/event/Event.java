@@ -291,7 +291,8 @@ public abstract class Event implements Serializable {
          * @see org.bukkit.event.player.BlockSendEvent
          */
         BLOCK_SEND (Category.PLAYER),
-        
+
+
         /**
          * BLOCK EVENTS
          */
