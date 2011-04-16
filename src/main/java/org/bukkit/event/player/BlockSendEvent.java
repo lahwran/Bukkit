@@ -97,9 +97,9 @@ public class BlockSendEvent extends PlayerEvent {
         x=initx;
         y=inity;
         z=initz;
-        sizex=0;
-        sizey=0;
-        sizez=0;
+        sizex=1;
+        sizey=1;
+        sizez=1;
         player = initplayer;
         blockid=initblockid;
         blockmeta=initblockmeta;

@@ -325,11 +325,11 @@ public final class JavaPluginLoader implements PluginLoader {
                 }
             };
         case BLOCK_SEND:
-        	return new EventExecutor() {
-        		public void execute(Listener listener, Event event) {
-        			((PlayerListener) listener).onBlockSend((BlockSendEvent) event);
-        		}
-        	};
+            return new EventExecutor() {
+                public void execute(Listener listener, Event event) {
+                    ((PlayerListener) listener).onBlockSend((BlockSendEvent) event);
+                }
+            };
 
         // Block Events
         case BLOCK_PHYSICS:

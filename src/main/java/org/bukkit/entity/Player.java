@@ -2,6 +2,7 @@
 package org.bukkit.entity;
 
 import java.net.InetSocketAddress;
+
 import org.bukkit.Location;
 import org.bukkit.command.CommandSender;
 
@@ -126,6 +127,37 @@ public interface Player extends HumanEntity, CommandSender {
      * @return
      */
     public boolean isSleepingIgnored();
+
+    /**
+     * Resends all chunks this player has loaded. Use sparingly to conserve bandwidth.
+     * Sends around 81 Chunk-sized Packet51MapChunks.
+     * @see org.bukkit.event.player.BlockSendEvent
+     */
+    public void resendChunks();
+
+    /**
+     * Resends all blocks within specified area. The start parameters must be less
+     * than the end parameters. Calling with (0, 0, 0, 1, 1, 1) will send one one block,
+     * the block at coords 0,0,0. 
+     * Sends one or more Packet51MapChunks.
+     * @param startX
+     * @param startY
+     * @param startZ
+     * @param endX
+     * @param endY
+     * @param endZ
+     */
+    public void resendArea(int startX, int startY, int startZ, int endX, int endY, int endZ);
+
+    /**
+     * Resends the blocks specified by coordArray. As it uses varargs it may be called:
+     * <pre>
+     * player.resendBlocks(new int[]{0,0,0}, new int[]{10,62,174});
+     * player.resendBlocks(new int[][]{ new int[]{0,0,0}, new int[]{10,62,174} });
+     * </pre>
+     * @param coordArray
+     */
+    public void resendBlocks(int[]... coordArray);
 
     /**
      * Forces an update of the player's entire inventory.
