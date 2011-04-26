@@ -230,11 +230,4 @@ public class BlockSendEvent extends PlayerEvent {
 
     //TODO: set light values for bytearray
 
-    /**
-     * uh ... what's this for?
-     * 
-     * @todo figure out wtf this is for
-     */
-    private static final long serialVersionUID = 2009534114381893685L;
-
 }
