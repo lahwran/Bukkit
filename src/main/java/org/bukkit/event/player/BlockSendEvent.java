@@ -70,9 +70,9 @@ public class BlockSendEvent extends PlayerEvent {
     {
         super(Type.BLOCK_SEND, _player);
         world=_player.getWorld();
-        x=_x+1;
-        y=_y+1;
-        z=_z+1;
+        x=_x;
+        y=_y;
+        z=_z;
         sizex=_sizex;
         sizey=_sizey;
         sizez=_sizez;
