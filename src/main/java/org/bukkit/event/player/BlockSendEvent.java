@@ -127,21 +127,18 @@ public class BlockSendEvent extends PlayerEvent {
             return 7; //bedrock
         else if (getY+y > 127)
             return 0; //air
-        else if (getX >= 0 && getX < sizex && getY >= 0 && getY < sizey && getZ >= 0 && getZ < sizez)
+        else if (mode == eventMode.BYTEARRAY && getX >= 0 && getX < sizex && getY >= 0 && getY < sizey && getZ >= 0 && getZ < sizez)
         {
-            if (mode == eventMode.BYTEARRAY)
-            {
-                //see http://mc.kev009.com/Protocol#Map_Chunk_.280x33.29 for description of indexing in data
-                return data_array[(getY) + (getZ * (sizey)) + (getX * (sizey) * (sizez)) ];
-            }
-            else //if (mode == eventMode.SINGLE)
-            {
-                return blockid;
-            }
+            //see http://mc.kev009.com/Protocol#Map_Chunk_.280x33.29 for description of indexing in data
+            return data_array[(getY) + (getZ * (sizey)) + (getX * (sizey) * (sizez)) ];
+        }
+        else if (mode == eventMode.SINGLE && getX == 0 && getY == 0 && getZ == 0)
+        {
+            return blockid;
         }
         else
         {
-            return world.getBlockTypeIdAt(getX, getY, getZ);
+            return world.getBlockTypeIdAt(getX+x, getY+y, getZ+z);
         }
     }
     
@@ -154,17 +151,14 @@ public class BlockSendEvent extends PlayerEvent {
      */
     public void setBlockID(byte id, int setX, int setY, int setZ)
     {
-        if (setX >= 0 && setX < sizex && setY >= 0 && setY < sizey && setZ >= 0 && setZ < sizez)
+        if (mode == eventMode.BYTEARRAY && setX >= 0 && setX < sizex && setY >= 0 && setY < sizey && setZ >= 0 && setZ < sizez)
         {
-            if (mode == eventMode.BYTEARRAY)
-            {
                 //see http://mc.kev009.com/Protocol#Map_Chunk_.280x33.29 for description of indexing in data
                 data_array[(setY) + (setZ * (sizey)) + (setX * (sizey) * (sizez)) ] = id;
-            }
-            else
-            {
-                blockid = id;
-            }
+        }
+        else if (mode == eventMode.SINGLE && setX == 0 && setY == 0 && setZ == 0)
+        {
+            blockid = id;
         }
         else
             throw new ArrayIndexOutOfBoundsException("setBlockID("+id+", "+setX+", "+setY+", "+setZ+") on a ("+sizex+", "+sizey+", "+sizez+") send array for player "+player.getName());
@@ -182,16 +176,13 @@ public class BlockSendEvent extends PlayerEvent {
     {
         if( getY+y < 0 || getY+y > 127)
             return 0; //air or bedrock
-        else if (getX >= 0 && getX < sizex && getY >= 0 && getY < sizey && getZ >= 0 && getZ < sizez)
+        else if (mode == eventMode.BYTEARRAY && getX >= 0 && getX < sizex && getY >= 0 && getY < sizey && getZ >= 0 && getZ < sizez)
         {
-            if (mode == eventMode.SINGLE)
-            {
-                return blockmeta;
-            }
-            else
-            {
-                throw new UnsupportedOperationException("getting the metadata of a bytearray event is not implemented yet!");
-            }
+            throw new UnsupportedOperationException("getting the metadata of a bytearray event is not implemented yet!");
+        }
+        else if (mode == eventMode.SINGLE && getX == 0 && getY == 0 && getZ == 0)
+        {
+            return blockmeta;
         }
         else
         {
@@ -209,20 +200,17 @@ public class BlockSendEvent extends PlayerEvent {
      */
     public void setMeta(int meta, int setX, int setY, int setZ)
     {
-        if (setX >= 0 && setX < sizex && setY >= 0 && setY < sizey && setZ >= 0 && setZ < sizez)
+        if (mode == eventMode.BYTEARRAY && setX >= 0 && setX < sizex && setY >= 0 && setY < sizey && setZ >= 0 && setZ < sizez)
         {
-            if (mode == eventMode.BYTEARRAY)
-            {
                 throw new UnsupportedOperationException("setting the metadata of a bytearray event is not implemented yet!");
                 //see http://mc.kev009.com/Protocol#Map_Chunk_.280x33.29 for description of indexing in data
                 //data_array[(setY                         ) + 
                 //     (setZ * (sizey+1)             ) +
                 //     (setX * (sizey+1) * (sizez+1) ) ] = id;
-            }
-            else
-            {
-                blockmeta = meta;
-            }
+        }
+        else if (mode == eventMode.SINGLE && setX == 0 && setY == 0 && setZ == 0)
+        {
+            blockmeta = meta;
         }
         else
             throw new ArrayIndexOutOfBoundsException("setMeta("+meta+", "+setX+", "+setY+", "+setZ+") on a ("+sizex+", "+sizey+", "+sizez+") send array for player "+player.getName());
