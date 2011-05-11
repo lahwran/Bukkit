@@ -196,14 +196,6 @@ public class PlayerListener implements Listener {
     public void onPlayerBedLeave(PlayerBedLeaveEvent event) {
     }
 
-    /**
-     * Called when blocks are about to be sent to a player
-     * 
-     * @param event Relevant event details
-     */
-    public void onBlockSend(BlockSendEvent event) {
-    }
-
     // TODO: Remove after RB
     @Deprecated public void onPlayerQuit(PlayerEvent event) {}
     @Deprecated public void onPlayerCommandPreprocess(PlayerChatEvent event) {}
